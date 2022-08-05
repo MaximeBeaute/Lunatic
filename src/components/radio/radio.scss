@@ -1,3 +1,18 @@
+.lunatic-radio-group-option-HORIZONTAL {
+	display: flex;
+	margin-right: 0.5rem;
+}
+.lunatic-radio-group-option-VERTICAL {
+	display: flex;
+	flex-direction: column;
+	margin-right: 0.35rem;
+}
+
+.lunatic-radio-label {
+	align-self: center;
+	margin-right: 0.35rem;
+}
+
 .lunatic-component {
 	// .radio-group-list {
 	// 	border: 0;

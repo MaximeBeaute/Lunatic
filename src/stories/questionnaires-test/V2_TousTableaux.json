@@ -1,0 +1,4496 @@
+{
+	"id": "kzy5kbtl",
+	"modele": "TESTANNE",
+	"enoCoreVersion": "2.3.7-dev-lunatic-v2",
+	"lunaticModelVersion": "2.2.13-dev-lunatic-v2",
+	"generatingDate": "03-08-2022 16:37:48",
+	"missing": false,
+	"pagination": "question",
+	"maxPage": "15",
+	"label": {
+		"value": "Lunatic - Recensement des tables/tableaux VTL avec controles (dont certaines combinaisons ko bug)",
+		"type": "VTL|MD"
+	},
+	"components": [
+		{
+			"id": "kwupyhsh",
+			"componentType": "Sequence",
+			"page": "1",
+			"label": { "value": "S0", "type": "VTL|MD" },
+			"conditionFilter": { "value": "true", "type": "VTL" },
+			"hierarchy": {
+				"sequence": {
+					"id": "kwupyhsh",
+					"page": "1",
+					"label": { "value": "S0", "type": "VTL|MD" }
+				}
+			}
+		},
+
+		{
+			"id": "kzy4w9p3",
+			"componentType": "CheckboxOne",
+			"mandatory": false,
+			"page": "2",
+			"positioning": "HORIZONTAL",
+			"label": {
+				"value": "\"➡ 1. \" || \"Permettre de filtrer certains tableaux\"",
+				"type": "VTL|MD"
+			},
+			"conditionFilter": { "value": "true", "type": "VTL" },
+			"hierarchy": {
+				"sequence": {
+					"id": "kwupyhsh",
+					"page": "1",
+					"label": { "value": "S0", "type": "VTL|MD" }
+				}
+			},
+			"bindingDependencies": ["FILTTAB"],
+			"options": [
+				{ "value": "1", "label": { "value": "oui", "type": "VTL|MD" } },
+
+				{ "value": "2", "label": { "value": "non", "type": "VTL|MD" } }
+			],
+			"response": { "name": "FILTTAB" }
+		},
+
+		{
+			"id": "kzy7yua9",
+			"componentType": "Sequence",
+			"page": "3",
+			"label": {
+				"value": "S1 - les questions sous forme de tableaux",
+				"type": "VTL|MD"
+			},
+			"conditionFilter": { "value": "true", "type": "VTL" },
+			"hierarchy": {
+				"sequence": {
+					"id": "kzy7yua9",
+					"page": "3",
+					"label": {
+						"value": "S1 - les questions sous forme de tableaux",
+						"type": "VTL|MD"
+					}
+				}
+			}
+		},
+
+		{
+			"id": "kz5aozhw",
+			"componentType": "Table",
+			"mandatory": false,
+			"page": "4",
+			"positioning": "VERTICAL",
+			"label": {
+				"value": "\"➡ 1. \" || \"QCM avec modalités de réponse case à cocher\"",
+				"type": "VTL|MD"
+			},
+			"declarations": [
+				{
+					"id": "kz5aozhw-kzy5tq43",
+					"declarationType": "HELP",
+					"position": "AFTER_QUESTION_TEXT",
+					"label": {
+						"value": "Controles sur les 2 cases cochées : tester oui/non",
+						"type": "VTL|MD"
+					}
+				},
+
+				{
+					"id": "kz5aozhw-kzy63ajl",
+					"declarationType": "HELP",
+					"position": "AFTER_QUESTION_TEXT",
+					"label": {
+						"value": "Controles sur un des deux vides",
+						"type": "VTL|MD"
+					}
+				}
+			],
+			"conditionFilter": { "value": "true", "type": "VTL" },
+			"controls": [
+				{
+					"id": "kz5aozhw-CI-0",
+					"criticality": "WARN",
+					"control": {
+						"value": "not((nvl(QCMCCOCHER1,\"0\")=\"1\" and nvl(QCMCCOCHER2,\"0\")=\"2\") or (nvl(QCMCCOCHER1,\"0\")=\"2\" and nvl(QCMCCOCHER2,\"0\")=\"1\"))",
+						"type": "VTL"
+					},
+					"errorMessage": {
+						"value": "Oui et Non incompatibles",
+						"type": "VTL|MD"
+					},
+					"bindingDependencies": ["QCMCCOCHER1", "QCMCCOCHER2"]
+				},
+
+				{
+					"id": "kz5aozhw-CI-1",
+					"criticality": "WARN",
+					"control": {
+						"value": "not(isnull(QCMCCOCHER1) or isnull(QCMCCOCHER2))",
+						"type": "VTL"
+					},
+					"errorMessage": { "value": "Un des deux vides", "type": "VTL|MD" },
+					"bindingDependencies": ["QCMCCOCHER1", "QCMCCOCHER2"]
+				}
+			],
+			"hierarchy": {
+				"sequence": {
+					"id": "kzy7yua9",
+					"page": "3",
+					"label": {
+						"value": "S1 - les questions sous forme de tableaux",
+						"type": "VTL|MD"
+					}
+				}
+			},
+			"bindingDependencies": ["QCMCCOCHER1", "QCMCCOCHER2"],
+			"body": [
+				[
+					{ "value": "1", "label": { "value": "mod a", "type": "VTL|MD" } },
+
+					{
+						"componentType": "CheckboxOne",
+						"id": "kz5aozhw-QOP-kzy6hi9g",
+						"options": [
+							{ "value": "1", "label": { "value": "oui", "type": "VTL|MD" } },
+
+							{ "value": "2", "label": { "value": "non", "type": "VTL|MD" } }
+						],
+						"response": { "name": "QCMCCOCHER1" },
+						"bindingDependencies": ["QCMCCOCHER1"]
+					}
+				],
+
+				[
+					{ "value": "2", "label": { "value": "mod b", "type": "VTL|MD" } },
+
+					{
+						"componentType": "CheckboxOne",
+						"id": "kz5aozhw-QOP-kzy6so8i",
+						"options": [
+							{ "value": "1", "label": { "value": "oui", "type": "VTL|MD" } },
+
+							{ "value": "2", "label": { "value": "non", "type": "VTL|MD" } }
+						],
+						"response": { "name": "QCMCCOCHER2" },
+						"bindingDependencies": ["QCMCCOCHER2"]
+					}
+				]
+			]
+		},
+
+		{
+			"id": "kzy5j4br",
+			"componentType": "Table",
+			"mandatory": false,
+			"page": "5",
+			"positioning": "HORIZONTAL",
+			"label": {
+				"value": "\"➡ 2. \" || \"QCM avec modalités de réponse bouton radio\"",
+				"type": "VTL|MD"
+			},
+			"conditionFilter": { "value": "true", "type": "VTL" },
+			"hierarchy": {
+				"sequence": {
+					"id": "kzy7yua9",
+					"page": "3",
+					"label": {
+						"value": "S1 - les questions sous forme de tableaux",
+						"type": "VTL|MD"
+					}
+				}
+			},
+			"bindingDependencies": ["QCMBRADIO1", "QCMBRADIO2"],
+			"body": [
+				[
+					{ "value": "1", "label": { "value": "mod a", "type": "VTL|MD" } },
+
+					{
+						"componentType": "Radio",
+						"id": "kzy5j4br-QOP-kzy5opbi",
+						"options": [
+							{ "value": "1", "label": { "value": "oui", "type": "VTL|MD" } },
+
+							{ "value": "2", "label": { "value": "non", "type": "VTL|MD" } }
+						],
+						"response": { "name": "QCMBRADIO1" },
+						"bindingDependencies": ["QCMBRADIO1"]
+					}
+				],
+
+				[
+					{ "value": "2", "label": { "value": "mod b", "type": "VTL|MD" } },
+
+					{
+						"componentType": "Radio",
+						"id": "kzy5j4br-QOP-kzy5c32k",
+						"options": [
+							{ "value": "1", "label": { "value": "oui", "type": "VTL|MD" } },
+
+							{ "value": "2", "label": { "value": "non", "type": "VTL|MD" } }
+						],
+						"response": { "name": "QCMBRADIO2" },
+						"bindingDependencies": ["QCMBRADIO2"]
+					}
+				]
+			]
+		},
+
+		{
+			"id": "kzy4mjvv",
+			"componentType": "Table",
+			"mandatory": false,
+			"page": "6",
+			"positioning": "HORIZONTAL",
+			"label": {
+				"value": "\"➡ 3. \" || \"Tableau : liste de codes en lignes, 2 var collectées\"",
+				"type": "VTL|MD"
+			},
+			"declarations": [
+				{
+					"id": "kzy4mjvv-kzy4jnhc",
+					"declarationType": "HELP",
+					"position": "AFTER_QUESTION_TEXT",
+					"label": {
+						"value": "\"Affiche le total de la colonne 2: \" || cast(TOTAL,string)",
+						"type": "VTL|MD"
+					}
+				},
+
+				{
+					"id": "kzy4mjvv-kzy5szcq",
+					"declarationType": "HELP",
+					"position": "AFTER_QUESTION_TEXT",
+					"label": { "value": "Tester total sup à 5", "type": "VTL|MD" }
+				}
+			],
+			"conditionFilter": { "value": "true", "type": "VTL" },
+			"controls": [
+				{
+					"id": "kzy4mjvv-CI-0",
+					"criticality": "WARN",
+					"control": { "value": "not(cast(TOTAL,integer) > 5)", "type": "VTL" },
+					"errorMessage": {
+						"value": "\"total colonne 2 sup à 5\"",
+						"type": "VTL|MD"
+					},
+					"bindingDependencies": ["TOTAL"]
+				}
+			],
+			"hierarchy": {
+				"sequence": {
+					"id": "kzy7yua9",
+					"page": "3",
+					"label": {
+						"value": "S1 - les questions sous forme de tableaux",
+						"type": "VTL|MD"
+					}
+				}
+			},
+			"bindingDependencies": [
+				"TOTAL",
+				"TABCODE11",
+				"TABCODE12",
+				"TABCODE21",
+				"TABCODE22",
+				"TABCODE31",
+				"TABCODE32",
+				"TABCODE41",
+				"TABCODE42",
+				"TABCODE51",
+				"TABCODE52"
+			],
+			"header": [
+				{ "label": { "value": "", "type": "VTL|MD" } },
+
+				{ "label": { "value": "Var 1", "type": "VTL|MD" } },
+
+				{ "label": { "value": "Var 2", "type": "VTL|MD" } }
+			],
+			"body": [
+				[
+					{ "value": "1", "label": { "value": "A", "type": "VTL|MD" } },
+
+					{
+						"componentType": "Input",
+						"maxLength": 249,
+						"id": "kzy4mjvv-QOP-l2et9ro5",
+						"response": { "name": "TABCODE11" },
+						"bindingDependencies": ["TABCODE11"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy4mjvv-QOP-l2esta6m",
+						"response": { "name": "TABCODE12" },
+						"bindingDependencies": ["TABCODE12"]
+					}
+				],
+
+				[
+					{ "value": "2", "label": { "value": "B", "type": "VTL|MD" } },
+
+					{
+						"componentType": "Input",
+						"maxLength": 249,
+						"id": "kzy4mjvv-QOP-l2et94sj",
+						"response": { "name": "TABCODE21" },
+						"bindingDependencies": ["TABCODE21"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy4mjvv-QOP-l2et0wfe",
+						"response": { "name": "TABCODE22" },
+						"bindingDependencies": ["TABCODE22"]
+					}
+				],
+
+				[
+					{ "value": "3", "label": { "value": "C", "type": "VTL|MD" } },
+
+					{
+						"componentType": "Input",
+						"maxLength": 249,
+						"id": "kzy4mjvv-QOP-l2et6i1d",
+						"response": { "name": "TABCODE31" },
+						"bindingDependencies": ["TABCODE31"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy4mjvv-QOP-l2et5j9j",
+						"response": { "name": "TABCODE32" },
+						"bindingDependencies": ["TABCODE32"]
+					}
+				],
+
+				[
+					{ "value": "4", "label": { "value": "D", "type": "VTL|MD" } },
+
+					{
+						"componentType": "Input",
+						"maxLength": 249,
+						"id": "kzy4mjvv-QOP-l2esy1a9",
+						"response": { "name": "TABCODE41" },
+						"bindingDependencies": ["TABCODE41"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy4mjvv-QOP-l2esse4a",
+						"response": { "name": "TABCODE42" },
+						"bindingDependencies": ["TABCODE42"]
+					}
+				],
+
+				[
+					{ "value": "5", "label": { "value": "E", "type": "VTL|MD" } },
+
+					{
+						"componentType": "Input",
+						"maxLength": 249,
+						"id": "kzy4mjvv-QOP-l2et956o",
+						"response": { "name": "TABCODE51" },
+						"bindingDependencies": ["TABCODE51"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy4mjvv-QOP-l2et6zuv",
+						"response": { "name": "TABCODE52" },
+						"bindingDependencies": ["TABCODE52"]
+					}
+				]
+			]
+		},
+
+		{
+			"id": "kzy4e34u",
+			"componentType": "Table",
+			"mandatory": false,
+			"page": "7",
+			"positioning": "HORIZONTAL",
+			"label": {
+				"value": "\"➡ 4. \" || \"Tableau simple, fixe de 4 lignes - vérifier nom des var dans le Lunatic\"",
+				"type": "VTL|MD"
+			},
+			"conditionFilter": { "value": "true", "type": "VTL" },
+			"hierarchy": {
+				"sequence": {
+					"id": "kzy7yua9",
+					"page": "3",
+					"label": {
+						"value": "S1 - les questions sous forme de tableaux",
+						"type": "VTL|MD"
+					}
+				}
+			},
+			"bindingDependencies": [
+				"TABSIMPLE1",
+				"TABSIMPLE2",
+				"TABSIMPLE1_1_1",
+				"TABSIMPLE2_1_2",
+				"TABSIMPLE1_2_1",
+				"TABSIMPLE2_2_2",
+				"TABSIMPLE1_3_1",
+				"TABSIMPLE2_3_2",
+				"TABSIMPLE1_4_1",
+				"TABSIMPLE2_4_2"
+			],
+			"lines": {
+				"min": { "value": "4", "type": "VTL" },
+				"max": { "value": "4", "type": "VTL" }
+			},
+			"header": [
+				{ "label": { "value": "Var 1", "type": "VTL|MD" } },
+
+				{ "label": { "value": "Var 2", "type": "VTL|MD" } }
+			],
+			"body": [
+				[
+					{
+						"componentType": "Input",
+						"maxLength": 249,
+						"id": "kzy4e34u-QOP-l2eta2f1",
+						"response": { "name": "TABSIMPLE1_1_1" },
+						"bindingDependencies": ["TABSIMPLE1_1_1"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy4e34u-QOP-l2eswgl6",
+						"response": { "name": "TABSIMPLE2_1_2" },
+						"bindingDependencies": ["TABSIMPLE2_1_2"]
+					}
+				],
+
+				[
+					{
+						"componentType": "Input",
+						"maxLength": 249,
+						"id": "kzy4e34u-QOP-l2eta2f1",
+						"response": { "name": "TABSIMPLE1_2_1" },
+						"bindingDependencies": ["TABSIMPLE1_2_1"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy4e34u-QOP-l2eswgl6",
+						"response": { "name": "TABSIMPLE2_2_2" },
+						"bindingDependencies": ["TABSIMPLE2_2_2"]
+					}
+				],
+
+				[
+					{
+						"componentType": "Input",
+						"maxLength": 249,
+						"id": "kzy4e34u-QOP-l2eta2f1",
+						"response": { "name": "TABSIMPLE1_3_1" },
+						"bindingDependencies": ["TABSIMPLE1_3_1"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy4e34u-QOP-l2eswgl6",
+						"response": { "name": "TABSIMPLE2_3_2" },
+						"bindingDependencies": ["TABSIMPLE2_3_2"]
+					}
+				],
+
+				[
+					{
+						"componentType": "Input",
+						"maxLength": 249,
+						"id": "kzy4e34u-QOP-l2eta2f1",
+						"response": { "name": "TABSIMPLE1_4_1" },
+						"bindingDependencies": ["TABSIMPLE1_4_1"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy4e34u-QOP-l2eswgl6",
+						"response": { "name": "TABSIMPLE2_4_2" },
+						"bindingDependencies": ["TABSIMPLE2_4_2"]
+					}
+				]
+			]
+		},
+
+		{
+			"id": "kzy4vwpj",
+			"componentType": "Table",
+			"mandatory": false,
+			"page": "8",
+			"positioning": "HORIZONTAL",
+			"label": {
+				"value": "\"➡ 5. \" || \"Tableau dynamique de 1 à 10, perso type ESA, on teste la somme\"",
+				"type": "VTL|MD"
+			},
+			"conditionFilter": { "value": "true", "type": "VTL" },
+			"hierarchy": {
+				"sequence": {
+					"id": "kzy7yua9",
+					"page": "3",
+					"label": {
+						"value": "S1 - les questions sous forme de tableaux",
+						"type": "VTL|MD"
+					}
+				}
+			},
+			"bindingDependencies": [
+				"TABESA1",
+				"TABESA2",
+				"TABESA1_1_1",
+				"TABESA2_1_2",
+				"TABESA1_2_1",
+				"TABESA2_2_2",
+				"TABESA1_3_1",
+				"TABESA2_3_2",
+				"TABESA1_4_1",
+				"TABESA2_4_2",
+				"TABESA1_5_1",
+				"TABESA2_5_2",
+				"TABESA1_6_1",
+				"TABESA2_6_2",
+				"TABESA1_7_1",
+				"TABESA2_7_2",
+				"TABESA1_8_1",
+				"TABESA2_8_2",
+				"TABESA1_9_1",
+				"TABESA2_9_2",
+				"TABESA1_10_1",
+				"TABESA2_10_2"
+			],
+			"lines": {
+				"min": { "value": "1", "type": "VTL" },
+				"max": { "value": "10", "type": "VTL" }
+			},
+			"header": [
+				{ "label": { "value": "Code ESA", "type": "VTL|MD" } },
+
+				{ "label": { "value": "Montant en keuros", "type": "VTL|MD" } }
+			],
+			"body": [
+				[
+					{
+						"componentType": "Input",
+						"maxLength": 249,
+						"id": "kzy4vwpj-QOP-l5qrkunb",
+						"response": { "name": "TABESA1_1_1" },
+						"bindingDependencies": ["TABESA1_1_1"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy4vwpj-QOP-l5qrm0c7",
+						"unit": "k€",
+						"response": { "name": "TABESA2_1_2" },
+						"bindingDependencies": ["TABESA2_1_2"]
+					}
+				],
+
+				[
+					{
+						"componentType": "Input",
+						"maxLength": 249,
+						"id": "kzy4vwpj-QOP-l5qrkunb",
+						"response": { "name": "TABESA1_2_1" },
+						"bindingDependencies": ["TABESA1_2_1"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy4vwpj-QOP-l5qrm0c7",
+						"unit": "k€",
+						"response": { "name": "TABESA2_2_2" },
+						"bindingDependencies": ["TABESA2_2_2"]
+					}
+				],
+
+				[
+					{
+						"componentType": "Input",
+						"maxLength": 249,
+						"id": "kzy4vwpj-QOP-l5qrkunb",
+						"response": { "name": "TABESA1_3_1" },
+						"bindingDependencies": ["TABESA1_3_1"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy4vwpj-QOP-l5qrm0c7",
+						"unit": "k€",
+						"response": { "name": "TABESA2_3_2" },
+						"bindingDependencies": ["TABESA2_3_2"]
+					}
+				],
+
+				[
+					{
+						"componentType": "Input",
+						"maxLength": 249,
+						"id": "kzy4vwpj-QOP-l5qrkunb",
+						"response": { "name": "TABESA1_4_1" },
+						"bindingDependencies": ["TABESA1_4_1"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy4vwpj-QOP-l5qrm0c7",
+						"unit": "k€",
+						"response": { "name": "TABESA2_4_2" },
+						"bindingDependencies": ["TABESA2_4_2"]
+					}
+				],
+
+				[
+					{
+						"componentType": "Input",
+						"maxLength": 249,
+						"id": "kzy4vwpj-QOP-l5qrkunb",
+						"response": { "name": "TABESA1_5_1" },
+						"bindingDependencies": ["TABESA1_5_1"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy4vwpj-QOP-l5qrm0c7",
+						"unit": "k€",
+						"response": { "name": "TABESA2_5_2" },
+						"bindingDependencies": ["TABESA2_5_2"]
+					}
+				],
+
+				[
+					{
+						"componentType": "Input",
+						"maxLength": 249,
+						"id": "kzy4vwpj-QOP-l5qrkunb",
+						"response": { "name": "TABESA1_6_1" },
+						"bindingDependencies": ["TABESA1_6_1"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy4vwpj-QOP-l5qrm0c7",
+						"unit": "k€",
+						"response": { "name": "TABESA2_6_2" },
+						"bindingDependencies": ["TABESA2_6_2"]
+					}
+				],
+
+				[
+					{
+						"componentType": "Input",
+						"maxLength": 249,
+						"id": "kzy4vwpj-QOP-l5qrkunb",
+						"response": { "name": "TABESA1_7_1" },
+						"bindingDependencies": ["TABESA1_7_1"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy4vwpj-QOP-l5qrm0c7",
+						"unit": "k€",
+						"response": { "name": "TABESA2_7_2" },
+						"bindingDependencies": ["TABESA2_7_2"]
+					}
+				],
+
+				[
+					{
+						"componentType": "Input",
+						"maxLength": 249,
+						"id": "kzy4vwpj-QOP-l5qrkunb",
+						"response": { "name": "TABESA1_8_1" },
+						"bindingDependencies": ["TABESA1_8_1"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy4vwpj-QOP-l5qrm0c7",
+						"unit": "k€",
+						"response": { "name": "TABESA2_8_2" },
+						"bindingDependencies": ["TABESA2_8_2"]
+					}
+				],
+
+				[
+					{
+						"componentType": "Input",
+						"maxLength": 249,
+						"id": "kzy4vwpj-QOP-l5qrkunb",
+						"response": { "name": "TABESA1_9_1" },
+						"bindingDependencies": ["TABESA1_9_1"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy4vwpj-QOP-l5qrm0c7",
+						"unit": "k€",
+						"response": { "name": "TABESA2_9_2" },
+						"bindingDependencies": ["TABESA2_9_2"]
+					}
+				],
+
+				[
+					{
+						"componentType": "Input",
+						"maxLength": 249,
+						"id": "kzy4vwpj-QOP-l5qrkunb",
+						"response": { "name": "TABESA1_10_1" },
+						"bindingDependencies": ["TABESA1_10_1"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy4vwpj-QOP-l5qrm0c7",
+						"unit": "k€",
+						"response": { "name": "TABESA2_10_2" },
+						"bindingDependencies": ["TABESA2_10_2"]
+					}
+				]
+			]
+		},
+
+		{
+			"id": "kzy6ans0",
+			"componentType": "Table",
+			"mandatory": false,
+			"page": "9",
+			"positioning": "HORIZONTAL",
+			"label": {
+				"value": "\"➡ 6. \" || \"Tableau perso type OFATS de 1 à 10, on teste le controle\"",
+				"type": "VTL|MD"
+			},
+			"declarations": [
+				{
+					"id": "kzy6ans0-kzy6nv2s",
+					"declarationType": "HELP",
+					"position": "AFTER_QUESTION_TEXT",
+					"label": { "value": "Controles par ligne", "type": "VTL|MD" }
+				}
+			],
+			"conditionFilter": { "value": "true", "type": "VTL" },
+			"controls": [
+				{
+					"id": "kzy6ans0-CI-0",
+					"criticality": "WARN",
+					"control": {
+						"value": "not(cast(nvl(TABOFATS6,\"0\"),integer) > cast(nvl(TABOFATS5,\"0\"),integer))",
+						"type": "VTL"
+					},
+					"errorMessage": {
+						"value": "eff plus petit doit etre plus petit que eff, test ligne à ligne",
+						"type": "VTL|MD"
+					},
+					"bindingDependencies": ["TABOFATS6", "TABOFATS5"]
+				}
+			],
+			"hierarchy": {
+				"sequence": {
+					"id": "kzy7yua9",
+					"page": "3",
+					"label": {
+						"value": "S1 - les questions sous forme de tableaux",
+						"type": "VTL|MD"
+					}
+				}
+			},
+			"bindingDependencies": [
+				"TABOFATS6",
+				"TABOFATS5",
+				"TABOFATS1",
+				"TABOFATS2",
+				"TABOFATS3",
+				"TABOFATS4",
+				"TABOFATS1_1_1",
+				"TABOFATS2_1_2",
+				"TABOFATS3_1_3",
+				"TABOFATS4_1_4",
+				"TABOFATS5_1_5",
+				"TABOFATS6_1_6",
+				"TABOFATS1_2_1",
+				"TABOFATS2_2_2",
+				"TABOFATS3_2_3",
+				"TABOFATS4_2_4",
+				"TABOFATS5_2_5",
+				"TABOFATS6_2_6",
+				"TABOFATS1_3_1",
+				"TABOFATS2_3_2",
+				"TABOFATS3_3_3",
+				"TABOFATS4_3_4",
+				"TABOFATS5_3_5",
+				"TABOFATS6_3_6",
+				"TABOFATS1_4_1",
+				"TABOFATS2_4_2",
+				"TABOFATS3_4_3",
+				"TABOFATS4_4_4",
+				"TABOFATS5_4_5",
+				"TABOFATS6_4_6",
+				"TABOFATS1_5_1",
+				"TABOFATS2_5_2",
+				"TABOFATS3_5_3",
+				"TABOFATS4_5_4",
+				"TABOFATS5_5_5",
+				"TABOFATS6_5_6",
+				"TABOFATS1_6_1",
+				"TABOFATS2_6_2",
+				"TABOFATS3_6_3",
+				"TABOFATS4_6_4",
+				"TABOFATS5_6_5",
+				"TABOFATS6_6_6",
+				"TABOFATS1_7_1",
+				"TABOFATS2_7_2",
+				"TABOFATS3_7_3",
+				"TABOFATS4_7_4",
+				"TABOFATS5_7_5",
+				"TABOFATS6_7_6",
+				"TABOFATS1_8_1",
+				"TABOFATS2_8_2",
+				"TABOFATS3_8_3",
+				"TABOFATS4_8_4",
+				"TABOFATS5_8_5",
+				"TABOFATS6_8_6",
+				"TABOFATS1_9_1",
+				"TABOFATS2_9_2",
+				"TABOFATS3_9_3",
+				"TABOFATS4_9_4",
+				"TABOFATS5_9_5",
+				"TABOFATS6_9_6",
+				"TABOFATS1_10_1",
+				"TABOFATS2_10_2",
+				"TABOFATS3_10_3",
+				"TABOFATS4_10_4",
+				"TABOFATS5_10_5",
+				"TABOFATS6_10_6"
+			],
+			"lines": {
+				"min": { "value": "1", "type": "VTL" },
+				"max": { "value": "10", "type": "VTL" }
+			},
+			"header": [
+				{ "label": { "value": "Code Pays", "type": "VTL|MD" } },
+
+				{ "label": { "value": "Code activité", "type": "VTL|MD" } },
+
+				{ "label": { "value": "Nb filiales", "type": "VTL|MD" } },
+
+				{ "label": { "value": "CA", "type": "VTL|MD" } },
+
+				{ "label": { "value": "Eff", "type": "VTL|MD" } },
+
+				{ "label": { "value": "Eff plus petit", "type": "VTL|MD" } }
+			],
+			"body": [
+				[
+					{
+						"componentType": "Dropdown",
+						"id": "kzy6ans0-QOP-l5qrlqkc",
+						"options": [
+							{ "value": "AA", "label": { "value": "AAAA", "type": "VTL|MD" } },
+
+							{ "value": "BB", "label": { "value": "BBBB", "type": "VTL|MD" } },
+
+							{ "value": "CC", "label": { "value": "CC", "type": "VTL|MD" } }
+						],
+						"response": { "name": "TABOFATS1_1_1" },
+						"bindingDependencies": ["TABOFATS1_1_1"]
+					},
+
+					{
+						"componentType": "Dropdown",
+						"id": "kzy6ans0-QOP-l5qrdxem",
+						"options": [
+							{
+								"value": "act1",
+								"label": { "value": "ACT1", "type": "VTL|MD" }
+							},
+
+							{
+								"value": "act2",
+								"label": { "value": "ACT2", "type": "VTL|MD" }
+							},
+
+							{
+								"value": "act3",
+								"label": { "value": "ACT3", "type": "VTL|MD" }
+							}
+						],
+						"response": { "name": "TABOFATS2_1_2" },
+						"bindingDependencies": ["TABOFATS2_1_2"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy6ans0-QOP-l5qrwfy5",
+						"response": { "name": "TABOFATS3_1_3" },
+						"bindingDependencies": ["TABOFATS3_1_3"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy6ans0-QOP-l5qri6f1",
+						"unit": "k€",
+						"response": { "name": "TABOFATS4_1_4" },
+						"bindingDependencies": ["TABOFATS4_1_4"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy6ans0-QOP-l5qrl1ld",
+						"response": { "name": "TABOFATS5_1_5" },
+						"bindingDependencies": ["TABOFATS5_1_5"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy6ans0-QOP-l5qre6iy",
+						"response": { "name": "TABOFATS6_1_6" },
+						"bindingDependencies": ["TABOFATS6_1_6"]
+					}
+				],
+
+				[
+					{
+						"componentType": "Dropdown",
+						"id": "kzy6ans0-QOP-l5qrlqkc",
+						"options": [
+							{ "value": "AA", "label": { "value": "AAAA", "type": "VTL|MD" } },
+
+							{ "value": "BB", "label": { "value": "BBBB", "type": "VTL|MD" } },
+
+							{ "value": "CC", "label": { "value": "CC", "type": "VTL|MD" } }
+						],
+						"response": { "name": "TABOFATS1_2_1" },
+						"bindingDependencies": ["TABOFATS1_2_1"]
+					},
+
+					{
+						"componentType": "Dropdown",
+						"id": "kzy6ans0-QOP-l5qrdxem",
+						"options": [
+							{
+								"value": "act1",
+								"label": { "value": "ACT1", "type": "VTL|MD" }
+							},
+
+							{
+								"value": "act2",
+								"label": { "value": "ACT2", "type": "VTL|MD" }
+							},
+
+							{
+								"value": "act3",
+								"label": { "value": "ACT3", "type": "VTL|MD" }
+							}
+						],
+						"response": { "name": "TABOFATS2_2_2" },
+						"bindingDependencies": ["TABOFATS2_2_2"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy6ans0-QOP-l5qrwfy5",
+						"response": { "name": "TABOFATS3_2_3" },
+						"bindingDependencies": ["TABOFATS3_2_3"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy6ans0-QOP-l5qri6f1",
+						"unit": "k€",
+						"response": { "name": "TABOFATS4_2_4" },
+						"bindingDependencies": ["TABOFATS4_2_4"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy6ans0-QOP-l5qrl1ld",
+						"response": { "name": "TABOFATS5_2_5" },
+						"bindingDependencies": ["TABOFATS5_2_5"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy6ans0-QOP-l5qre6iy",
+						"response": { "name": "TABOFATS6_2_6" },
+						"bindingDependencies": ["TABOFATS6_2_6"]
+					}
+				],
+
+				[
+					{
+						"componentType": "Dropdown",
+						"id": "kzy6ans0-QOP-l5qrlqkc",
+						"options": [
+							{ "value": "AA", "label": { "value": "AAAA", "type": "VTL|MD" } },
+
+							{ "value": "BB", "label": { "value": "BBBB", "type": "VTL|MD" } },
+
+							{ "value": "CC", "label": { "value": "CC", "type": "VTL|MD" } }
+						],
+						"response": { "name": "TABOFATS1_3_1" },
+						"bindingDependencies": ["TABOFATS1_3_1"]
+					},
+
+					{
+						"componentType": "Dropdown",
+						"id": "kzy6ans0-QOP-l5qrdxem",
+						"options": [
+							{
+								"value": "act1",
+								"label": { "value": "ACT1", "type": "VTL|MD" }
+							},
+
+							{
+								"value": "act2",
+								"label": { "value": "ACT2", "type": "VTL|MD" }
+							},
+
+							{
+								"value": "act3",
+								"label": { "value": "ACT3", "type": "VTL|MD" }
+							}
+						],
+						"response": { "name": "TABOFATS2_3_2" },
+						"bindingDependencies": ["TABOFATS2_3_2"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy6ans0-QOP-l5qrwfy5",
+						"response": { "name": "TABOFATS3_3_3" },
+						"bindingDependencies": ["TABOFATS3_3_3"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy6ans0-QOP-l5qri6f1",
+						"unit": "k€",
+						"response": { "name": "TABOFATS4_3_4" },
+						"bindingDependencies": ["TABOFATS4_3_4"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy6ans0-QOP-l5qrl1ld",
+						"response": { "name": "TABOFATS5_3_5" },
+						"bindingDependencies": ["TABOFATS5_3_5"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy6ans0-QOP-l5qre6iy",
+						"response": { "name": "TABOFATS6_3_6" },
+						"bindingDependencies": ["TABOFATS6_3_6"]
+					}
+				],
+
+				[
+					{
+						"componentType": "Dropdown",
+						"id": "kzy6ans0-QOP-l5qrlqkc",
+						"options": [
+							{ "value": "AA", "label": { "value": "AAAA", "type": "VTL|MD" } },
+
+							{ "value": "BB", "label": { "value": "BBBB", "type": "VTL|MD" } },
+
+							{ "value": "CC", "label": { "value": "CC", "type": "VTL|MD" } }
+						],
+						"response": { "name": "TABOFATS1_4_1" },
+						"bindingDependencies": ["TABOFATS1_4_1"]
+					},
+
+					{
+						"componentType": "Dropdown",
+						"id": "kzy6ans0-QOP-l5qrdxem",
+						"options": [
+							{
+								"value": "act1",
+								"label": { "value": "ACT1", "type": "VTL|MD" }
+							},
+
+							{
+								"value": "act2",
+								"label": { "value": "ACT2", "type": "VTL|MD" }
+							},
+
+							{
+								"value": "act3",
+								"label": { "value": "ACT3", "type": "VTL|MD" }
+							}
+						],
+						"response": { "name": "TABOFATS2_4_2" },
+						"bindingDependencies": ["TABOFATS2_4_2"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy6ans0-QOP-l5qrwfy5",
+						"response": { "name": "TABOFATS3_4_3" },
+						"bindingDependencies": ["TABOFATS3_4_3"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy6ans0-QOP-l5qri6f1",
+						"unit": "k€",
+						"response": { "name": "TABOFATS4_4_4" },
+						"bindingDependencies": ["TABOFATS4_4_4"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy6ans0-QOP-l5qrl1ld",
+						"response": { "name": "TABOFATS5_4_5" },
+						"bindingDependencies": ["TABOFATS5_4_5"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy6ans0-QOP-l5qre6iy",
+						"response": { "name": "TABOFATS6_4_6" },
+						"bindingDependencies": ["TABOFATS6_4_6"]
+					}
+				],
+
+				[
+					{
+						"componentType": "Dropdown",
+						"id": "kzy6ans0-QOP-l5qrlqkc",
+						"options": [
+							{ "value": "AA", "label": { "value": "AAAA", "type": "VTL|MD" } },
+
+							{ "value": "BB", "label": { "value": "BBBB", "type": "VTL|MD" } },
+
+							{ "value": "CC", "label": { "value": "CC", "type": "VTL|MD" } }
+						],
+						"response": { "name": "TABOFATS1_5_1" },
+						"bindingDependencies": ["TABOFATS1_5_1"]
+					},
+
+					{
+						"componentType": "Dropdown",
+						"id": "kzy6ans0-QOP-l5qrdxem",
+						"options": [
+							{
+								"value": "act1",
+								"label": { "value": "ACT1", "type": "VTL|MD" }
+							},
+
+							{
+								"value": "act2",
+								"label": { "value": "ACT2", "type": "VTL|MD" }
+							},
+
+							{
+								"value": "act3",
+								"label": { "value": "ACT3", "type": "VTL|MD" }
+							}
+						],
+						"response": { "name": "TABOFATS2_5_2" },
+						"bindingDependencies": ["TABOFATS2_5_2"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy6ans0-QOP-l5qrwfy5",
+						"response": { "name": "TABOFATS3_5_3" },
+						"bindingDependencies": ["TABOFATS3_5_3"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy6ans0-QOP-l5qri6f1",
+						"unit": "k€",
+						"response": { "name": "TABOFATS4_5_4" },
+						"bindingDependencies": ["TABOFATS4_5_4"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy6ans0-QOP-l5qrl1ld",
+						"response": { "name": "TABOFATS5_5_5" },
+						"bindingDependencies": ["TABOFATS5_5_5"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy6ans0-QOP-l5qre6iy",
+						"response": { "name": "TABOFATS6_5_6" },
+						"bindingDependencies": ["TABOFATS6_5_6"]
+					}
+				],
+
+				[
+					{
+						"componentType": "Dropdown",
+						"id": "kzy6ans0-QOP-l5qrlqkc",
+						"options": [
+							{ "value": "AA", "label": { "value": "AAAA", "type": "VTL|MD" } },
+
+							{ "value": "BB", "label": { "value": "BBBB", "type": "VTL|MD" } },
+
+							{ "value": "CC", "label": { "value": "CC", "type": "VTL|MD" } }
+						],
+						"response": { "name": "TABOFATS1_6_1" },
+						"bindingDependencies": ["TABOFATS1_6_1"]
+					},
+
+					{
+						"componentType": "Dropdown",
+						"id": "kzy6ans0-QOP-l5qrdxem",
+						"options": [
+							{
+								"value": "act1",
+								"label": { "value": "ACT1", "type": "VTL|MD" }
+							},
+
+							{
+								"value": "act2",
+								"label": { "value": "ACT2", "type": "VTL|MD" }
+							},
+
+							{
+								"value": "act3",
+								"label": { "value": "ACT3", "type": "VTL|MD" }
+							}
+						],
+						"response": { "name": "TABOFATS2_6_2" },
+						"bindingDependencies": ["TABOFATS2_6_2"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy6ans0-QOP-l5qrwfy5",
+						"response": { "name": "TABOFATS3_6_3" },
+						"bindingDependencies": ["TABOFATS3_6_3"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy6ans0-QOP-l5qri6f1",
+						"unit": "k€",
+						"response": { "name": "TABOFATS4_6_4" },
+						"bindingDependencies": ["TABOFATS4_6_4"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy6ans0-QOP-l5qrl1ld",
+						"response": { "name": "TABOFATS5_6_5" },
+						"bindingDependencies": ["TABOFATS5_6_5"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy6ans0-QOP-l5qre6iy",
+						"response": { "name": "TABOFATS6_6_6" },
+						"bindingDependencies": ["TABOFATS6_6_6"]
+					}
+				],
+
+				[
+					{
+						"componentType": "Dropdown",
+						"id": "kzy6ans0-QOP-l5qrlqkc",
+						"options": [
+							{ "value": "AA", "label": { "value": "AAAA", "type": "VTL|MD" } },
+
+							{ "value": "BB", "label": { "value": "BBBB", "type": "VTL|MD" } },
+
+							{ "value": "CC", "label": { "value": "CC", "type": "VTL|MD" } }
+						],
+						"response": { "name": "TABOFATS1_7_1" },
+						"bindingDependencies": ["TABOFATS1_7_1"]
+					},
+
+					{
+						"componentType": "Dropdown",
+						"id": "kzy6ans0-QOP-l5qrdxem",
+						"options": [
+							{
+								"value": "act1",
+								"label": { "value": "ACT1", "type": "VTL|MD" }
+							},
+
+							{
+								"value": "act2",
+								"label": { "value": "ACT2", "type": "VTL|MD" }
+							},
+
+							{
+								"value": "act3",
+								"label": { "value": "ACT3", "type": "VTL|MD" }
+							}
+						],
+						"response": { "name": "TABOFATS2_7_2" },
+						"bindingDependencies": ["TABOFATS2_7_2"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy6ans0-QOP-l5qrwfy5",
+						"response": { "name": "TABOFATS3_7_3" },
+						"bindingDependencies": ["TABOFATS3_7_3"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy6ans0-QOP-l5qri6f1",
+						"unit": "k€",
+						"response": { "name": "TABOFATS4_7_4" },
+						"bindingDependencies": ["TABOFATS4_7_4"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy6ans0-QOP-l5qrl1ld",
+						"response": { "name": "TABOFATS5_7_5" },
+						"bindingDependencies": ["TABOFATS5_7_5"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy6ans0-QOP-l5qre6iy",
+						"response": { "name": "TABOFATS6_7_6" },
+						"bindingDependencies": ["TABOFATS6_7_6"]
+					}
+				],
+
+				[
+					{
+						"componentType": "Dropdown",
+						"id": "kzy6ans0-QOP-l5qrlqkc",
+						"options": [
+							{ "value": "AA", "label": { "value": "AAAA", "type": "VTL|MD" } },
+
+							{ "value": "BB", "label": { "value": "BBBB", "type": "VTL|MD" } },
+
+							{ "value": "CC", "label": { "value": "CC", "type": "VTL|MD" } }
+						],
+						"response": { "name": "TABOFATS1_8_1" },
+						"bindingDependencies": ["TABOFATS1_8_1"]
+					},
+
+					{
+						"componentType": "Dropdown",
+						"id": "kzy6ans0-QOP-l5qrdxem",
+						"options": [
+							{
+								"value": "act1",
+								"label": { "value": "ACT1", "type": "VTL|MD" }
+							},
+
+							{
+								"value": "act2",
+								"label": { "value": "ACT2", "type": "VTL|MD" }
+							},
+
+							{
+								"value": "act3",
+								"label": { "value": "ACT3", "type": "VTL|MD" }
+							}
+						],
+						"response": { "name": "TABOFATS2_8_2" },
+						"bindingDependencies": ["TABOFATS2_8_2"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy6ans0-QOP-l5qrwfy5",
+						"response": { "name": "TABOFATS3_8_3" },
+						"bindingDependencies": ["TABOFATS3_8_3"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy6ans0-QOP-l5qri6f1",
+						"unit": "k€",
+						"response": { "name": "TABOFATS4_8_4" },
+						"bindingDependencies": ["TABOFATS4_8_4"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy6ans0-QOP-l5qrl1ld",
+						"response": { "name": "TABOFATS5_8_5" },
+						"bindingDependencies": ["TABOFATS5_8_5"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy6ans0-QOP-l5qre6iy",
+						"response": { "name": "TABOFATS6_8_6" },
+						"bindingDependencies": ["TABOFATS6_8_6"]
+					}
+				],
+
+				[
+					{
+						"componentType": "Dropdown",
+						"id": "kzy6ans0-QOP-l5qrlqkc",
+						"options": [
+							{ "value": "AA", "label": { "value": "AAAA", "type": "VTL|MD" } },
+
+							{ "value": "BB", "label": { "value": "BBBB", "type": "VTL|MD" } },
+
+							{ "value": "CC", "label": { "value": "CC", "type": "VTL|MD" } }
+						],
+						"response": { "name": "TABOFATS1_9_1" },
+						"bindingDependencies": ["TABOFATS1_9_1"]
+					},
+
+					{
+						"componentType": "Dropdown",
+						"id": "kzy6ans0-QOP-l5qrdxem",
+						"options": [
+							{
+								"value": "act1",
+								"label": { "value": "ACT1", "type": "VTL|MD" }
+							},
+
+							{
+								"value": "act2",
+								"label": { "value": "ACT2", "type": "VTL|MD" }
+							},
+
+							{
+								"value": "act3",
+								"label": { "value": "ACT3", "type": "VTL|MD" }
+							}
+						],
+						"response": { "name": "TABOFATS2_9_2" },
+						"bindingDependencies": ["TABOFATS2_9_2"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy6ans0-QOP-l5qrwfy5",
+						"response": { "name": "TABOFATS3_9_3" },
+						"bindingDependencies": ["TABOFATS3_9_3"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy6ans0-QOP-l5qri6f1",
+						"unit": "k€",
+						"response": { "name": "TABOFATS4_9_4" },
+						"bindingDependencies": ["TABOFATS4_9_4"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy6ans0-QOP-l5qrl1ld",
+						"response": { "name": "TABOFATS5_9_5" },
+						"bindingDependencies": ["TABOFATS5_9_5"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy6ans0-QOP-l5qre6iy",
+						"response": { "name": "TABOFATS6_9_6" },
+						"bindingDependencies": ["TABOFATS6_9_6"]
+					}
+				],
+
+				[
+					{
+						"componentType": "Dropdown",
+						"id": "kzy6ans0-QOP-l5qrlqkc",
+						"options": [
+							{ "value": "AA", "label": { "value": "AAAA", "type": "VTL|MD" } },
+
+							{ "value": "BB", "label": { "value": "BBBB", "type": "VTL|MD" } },
+
+							{ "value": "CC", "label": { "value": "CC", "type": "VTL|MD" } }
+						],
+						"response": { "name": "TABOFATS1_10_1" },
+						"bindingDependencies": ["TABOFATS1_10_1"]
+					},
+
+					{
+						"componentType": "Dropdown",
+						"id": "kzy6ans0-QOP-l5qrdxem",
+						"options": [
+							{
+								"value": "act1",
+								"label": { "value": "ACT1", "type": "VTL|MD" }
+							},
+
+							{
+								"value": "act2",
+								"label": { "value": "ACT2", "type": "VTL|MD" }
+							},
+
+							{
+								"value": "act3",
+								"label": { "value": "ACT3", "type": "VTL|MD" }
+							}
+						],
+						"response": { "name": "TABOFATS2_10_2" },
+						"bindingDependencies": ["TABOFATS2_10_2"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy6ans0-QOP-l5qrwfy5",
+						"response": { "name": "TABOFATS3_10_3" },
+						"bindingDependencies": ["TABOFATS3_10_3"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy6ans0-QOP-l5qri6f1",
+						"unit": "k€",
+						"response": { "name": "TABOFATS4_10_4" },
+						"bindingDependencies": ["TABOFATS4_10_4"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy6ans0-QOP-l5qrl1ld",
+						"response": { "name": "TABOFATS5_10_5" },
+						"bindingDependencies": ["TABOFATS5_10_5"]
+					},
+
+					{
+						"componentType": "InputNumber",
+						"min": 0,
+						"max": 100,
+						"decimals": 0,
+						"id": "kzy6ans0-QOP-l5qre6iy",
+						"response": { "name": "TABOFATS6_10_6" },
+						"bindingDependencies": ["TABOFATS6_10_6"]
+					}
+				]
+			]
+		},
+
+		{
+			"id": "kz5bwnn8",
+			"componentType": "Sequence",
+			"page": "10",
+			"label": {
+				"value": "S2 sous seq liée à un tableau (dans une sous séquence de la même séquence) KO",
+				"type": "VTL|MD"
+			},
+			"conditionFilter": { "value": "true", "type": "VTL" },
+			"hierarchy": {
+				"sequence": {
+					"id": "kz5bwnn8",
+					"page": "10",
+					"label": {
+						"value": "S2 sous seq liée à un tableau (dans une sous séquence de la même séquence) KO",
+						"type": "VTL|MD"
+					}
+				}
+			}
+		},
+
+		{
+			"id": "l5qrima7",
+			"componentType": "Loop",
+			"page": "11",
+			"depth": 1,
+			"paginatedLoop": false,
+			"conditionFilter": { "value": "true", "type": "VTL" },
+			"hierarchy": {
+				"sequence": {
+					"id": "kz5bwnn8",
+					"page": "10",
+					"label": {
+						"value": "S2 sous seq liée à un tableau (dans une sous séquence de la même séquence) KO",
+						"type": "VTL|MD"
+					}
+				}
+			},
+			"bindingDependencies": ["TABPRENOML", "TABOUINONL", "TABNOMBREL"],
+			"lines": {
+				"min": { "value": "1", "type": "VTL" },
+				"max": { "value": "5", "type": "VTL" }
+			},
+			"components": [
+				{
+					"id": "kz5bmih9",
+					"componentType": "Subsequence",
+					"page": "11",
+					"goToPage": "11",
+					"label": { "value": "S2 SEQTABALIER", "type": "VTL|MD" },
+					"declarations": [
+						{
+							"id": "kz5bmih9-kz5bs29d",
+							"declarationType": "HELP",
+							"position": "AFTER_QUESTION_TEXT",
+							"label": {
+								"value": "\"Liste des prénoms dans un tab qu’on liera\"",
+								"type": "VTL|MD"
+							}
+						}
+					],
+					"conditionFilter": { "value": "true", "type": "VTL" },
+					"hierarchy": {
+						"sequence": {
+							"id": "kz5bwnn8",
+							"page": "10",
+							"label": {
+								"value": "S2 sous seq liée à un tableau (dans une sous séquence de la même séquence) KO",
+								"type": "VTL|MD"
+							}
+						},
+						"subSequence": {
+							"id": "kz5bmih9",
+							"page": "11",
+							"label": { "value": "S2 SEQTABALIER", "type": "VTL|MD" }
+						}
+					}
+				},
+
+				{
+					"id": "kz5bxx78",
+					"componentType": "Table",
+					"mandatory": false,
+					"page": "11",
+					"positioning": "HORIZONTAL",
+					"label": {
+						"value": "\"➡ 1. \" || \"Liste de prénoms, oui/non, et données et on va lier (max = 3)\"",
+						"type": "VTL|MD"
+					},
+					"conditionFilter": { "value": "true", "type": "VTL" },
+					"hierarchy": {
+						"sequence": {
+							"id": "kz5bwnn8",
+							"page": "10",
+							"label": {
+								"value": "S2 sous seq liée à un tableau (dans une sous séquence de la même séquence) KO",
+								"type": "VTL|MD"
+							}
+						},
+						"subSequence": {
+							"id": "kz5bmih9",
+							"page": "11",
+							"label": { "value": "S2 SEQTABALIER", "type": "VTL|MD" }
+						}
+					},
+					"bindingDependencies": [
+						"TABPRENOML",
+						"TABOUINONL",
+						"TABNOMBREL",
+						"TABPRENOML_1_1",
+						"TABOUINONL_1_2",
+						"TABNOMBREL_1_3",
+						"TABPRENOML_2_1",
+						"TABOUINONL_2_2",
+						"TABNOMBREL_2_3",
+						"TABPRENOML_3_1",
+						"TABOUINONL_3_2",
+						"TABNOMBREL_3_3"
+					],
+					"lines": {
+						"min": { "value": "1", "type": "VTL" },
+						"max": { "value": "3", "type": "VTL" }
+					},
+					"header": [
+						{ "label": { "value": "Prenom", "type": "VTL|MD" } },
+
+						{ "label": { "value": "OuiOuNon", "type": "VTL|MD" } },
+
+						{ "label": { "value": "Nombre", "type": "VTL|MD" } }
+					],
+					"body": [
+						[
+							{
+								"componentType": "Input",
+								"maxLength": 249,
+								"id": "kz5bxx78-QOP-kz6s712h",
+								"response": { "name": "TABPRENOML_1_1" },
+								"bindingDependencies": ["TABPRENOML_1_1"]
+							},
+
+							{
+								"componentType": "Radio",
+								"id": "kz5bxx78-QOP-kz6s6z0c",
+								"options": [
+									{
+										"value": "1",
+										"label": { "value": "Oui", "type": "VTL|MD" }
+									},
+
+									{
+										"value": "2",
+										"label": { "value": "Non", "type": "VTL|MD" }
+									}
+								],
+								"response": { "name": "TABOUINONL_1_2" },
+								"bindingDependencies": ["TABOUINONL_1_2"]
+							},
+
+							{
+								"componentType": "InputNumber",
+								"min": 0,
+								"max": 100,
+								"decimals": 0,
+								"id": "kz5bxx78-QOP-kz6s670u",
+								"response": { "name": "TABNOMBREL_1_3" },
+								"bindingDependencies": ["TABNOMBREL_1_3"]
+							}
+						],
+
+						[
+							{
+								"componentType": "Input",
+								"maxLength": 249,
+								"id": "kz5bxx78-QOP-kz6s712h",
+								"response": { "name": "TABPRENOML_2_1" },
+								"bindingDependencies": ["TABPRENOML_2_1"]
+							},
+
+							{
+								"componentType": "Radio",
+								"id": "kz5bxx78-QOP-kz6s6z0c",
+								"options": [
+									{
+										"value": "1",
+										"label": { "value": "Oui", "type": "VTL|MD" }
+									},
+
+									{
+										"value": "2",
+										"label": { "value": "Non", "type": "VTL|MD" }
+									}
+								],
+								"response": { "name": "TABOUINONL_2_2" },
+								"bindingDependencies": ["TABOUINONL_2_2"]
+							},
+
+							{
+								"componentType": "InputNumber",
+								"min": 0,
+								"max": 100,
+								"decimals": 0,
+								"id": "kz5bxx78-QOP-kz6s670u",
+								"response": { "name": "TABNOMBREL_2_3" },
+								"bindingDependencies": ["TABNOMBREL_2_3"]
+							}
+						],
+
+						[
+							{
+								"componentType": "Input",
+								"maxLength": 249,
+								"id": "kz5bxx78-QOP-kz6s712h",
+								"response": { "name": "TABPRENOML_3_1" },
+								"bindingDependencies": ["TABPRENOML_3_1"]
+							},
+
+							{
+								"componentType": "Radio",
+								"id": "kz5bxx78-QOP-kz6s6z0c",
+								"options": [
+									{
+										"value": "1",
+										"label": { "value": "Oui", "type": "VTL|MD" }
+									},
+
+									{
+										"value": "2",
+										"label": { "value": "Non", "type": "VTL|MD" }
+									}
+								],
+								"response": { "name": "TABOUINONL_3_2" },
+								"bindingDependencies": ["TABOUINONL_3_2"]
+							},
+
+							{
+								"componentType": "InputNumber",
+								"min": 0,
+								"max": 100,
+								"decimals": 0,
+								"id": "kz5bxx78-QOP-kz6s670u",
+								"response": { "name": "TABNOMBREL_3_3" },
+								"bindingDependencies": ["TABNOMBREL_3_3"]
+							}
+						]
+					]
+				}
+			]
+		},
+
+		{
+			"id": "l5qrxyq8",
+			"componentType": "Loop",
+			"page": "12",
+			"depth": 1,
+			"paginatedLoop": false,
+			"conditionFilter": { "value": "true", "type": "VTL" },
+			"hierarchy": {
+				"sequence": {
+					"id": "kz5bwnn8",
+					"page": "10",
+					"label": {
+						"value": "S2 sous seq liée à un tableau (dans une sous séquence de la même séquence) KO",
+						"type": "VTL|MD"
+					}
+				}
+			},
+			"bindingDependencies": [
+				"TABPRENOML",
+				"S2A",
+				"S2B11",
+				"S2B12",
+				"S2B21",
+				"S2B22",
+				"S2B31",
+				"S2B32",
+				"S2B41",
+				"S2B42",
+				"S2B51",
+				"S2B52"
+			],
+			"lines": {
+				"min": { "value": "0", "type": "VTL" },
+				"max": { "value": "", "type": "VTL" }
+			},
+			"components": [
+				{
+					"id": "kz5b01rn",
+					"componentType": "Subsequence",
+					"page": "12",
+					"goToPage": "12",
+					"label": { "value": "S2 SEQTABLIEE", "type": "VTL|MD" },
+					"declarations": [
+						{
+							"id": "kz5b01rn-kz5c9c46",
+							"declarationType": "HELP",
+							"position": "AFTER_QUESTION_TEXT",
+							"label": {
+								"value": "Boucle liée au tableau des prénoms",
+								"type": "VTL|MD"
+							}
+						}
+					],
+					"conditionFilter": { "value": "true", "type": "VTL" },
+					"hierarchy": {
+						"sequence": {
+							"id": "kz5bwnn8",
+							"page": "10",
+							"label": {
+								"value": "S2 sous seq liée à un tableau (dans une sous séquence de la même séquence) KO",
+								"type": "VTL|MD"
+							}
+						},
+						"subSequence": {
+							"id": "kz5b01rn",
+							"page": "12",
+							"label": { "value": "S2 SEQTABLIEE", "type": "VTL|MD" }
+						}
+					}
+				},
+
+				{
+					"id": "kz5b3sgg",
+					"componentType": "Input",
+					"mandatory": false,
+					"page": "12",
+					"maxLength": 249,
+					"label": {
+						"value": "\"➡ 2. \" || \"Quelle question pour \" || TABPRENOML \" ?\"",
+						"type": "VTL|MD"
+					},
+					"conditionFilter": { "value": "true", "type": "VTL" },
+					"hierarchy": {
+						"sequence": {
+							"id": "kz5bwnn8",
+							"page": "10",
+							"label": {
+								"value": "S2 sous seq liée à un tableau (dans une sous séquence de la même séquence) KO",
+								"type": "VTL|MD"
+							}
+						},
+						"subSequence": {
+							"id": "kz5b01rn",
+							"page": "12",
+							"label": { "value": "S2 SEQTABLIEE", "type": "VTL|MD" }
+						}
+					},
+					"bindingDependencies": ["TABPRENOML", "S2A"],
+					"response": { "name": "S2A" }
+				},
+
+				{
+					"id": "kzy99nlq",
+					"componentType": "Table",
+					"mandatory": false,
+					"page": "12",
+					"positioning": "HORIZONTAL",
+					"label": {
+						"value": "\"➡ 3. \" || \"Tableau dépendant de la boucle - KO\"",
+						"type": "VTL|MD"
+					},
+					"conditionFilter": { "value": "true", "type": "VTL" },
+					"hierarchy": {
+						"sequence": {
+							"id": "kz5bwnn8",
+							"page": "10",
+							"label": {
+								"value": "S2 sous seq liée à un tableau (dans une sous séquence de la même séquence) KO",
+								"type": "VTL|MD"
+							}
+						},
+						"subSequence": {
+							"id": "kz5b01rn",
+							"page": "12",
+							"label": { "value": "S2 SEQTABLIEE", "type": "VTL|MD" }
+						}
+					},
+					"bindingDependencies": [
+						"S2B11",
+						"S2B12",
+						"S2B21",
+						"S2B22",
+						"S2B31",
+						"S2B32",
+						"S2B41",
+						"S2B42",
+						"S2B51",
+						"S2B52"
+					],
+					"header": [
+						{ "label": { "value": "", "type": "VTL|MD" } },
+
+						{ "label": { "value": "INfo 1", "type": "VTL|MD" } },
+
+						{ "label": { "value": "Info 2", "type": "VTL|MD" } }
+					],
+					"body": [
+						[
+							{ "value": "1", "label": { "value": "A", "type": "VTL|MD" } },
+
+							{
+								"componentType": "Input",
+								"maxLength": 249,
+								"id": "kzy99nlq-QOP-kzy8w61h",
+								"response": { "name": "S2B11" },
+								"bindingDependencies": ["S2B11"]
+							},
+
+							{
+								"componentType": "Input",
+								"maxLength": 249,
+								"id": "kzy99nlq-QOP-kzy8wu1w",
+								"response": { "name": "S2B12" },
+								"bindingDependencies": ["S2B12"]
+							}
+						],
+
+						[
+							{ "value": "2", "label": { "value": "B", "type": "VTL|MD" } },
+
+							{
+								"componentType": "Input",
+								"maxLength": 249,
+								"id": "kzy99nlq-QOP-kzy93uc1",
+								"response": { "name": "S2B21" },
+								"bindingDependencies": ["S2B21"]
+							},
+
+							{
+								"componentType": "Input",
+								"maxLength": 249,
+								"id": "kzy99nlq-QOP-kzy943pv",
+								"response": { "name": "S2B22" },
+								"bindingDependencies": ["S2B22"]
+							}
+						],
+
+						[
+							{ "value": "3", "label": { "value": "C", "type": "VTL|MD" } },
+
+							{
+								"componentType": "Input",
+								"maxLength": 249,
+								"id": "kzy99nlq-QOP-kzy8x0qj",
+								"response": { "name": "S2B31" },
+								"bindingDependencies": ["S2B31"]
+							},
+
+							{
+								"componentType": "Input",
+								"maxLength": 249,
+								"id": "kzy99nlq-QOP-kzy8zlfo",
+								"response": { "name": "S2B32" },
+								"bindingDependencies": ["S2B32"]
+							}
+						],
+
+						[
+							{ "value": "4", "label": { "value": "D", "type": "VTL|MD" } },
+
+							{
+								"componentType": "Input",
+								"maxLength": 249,
+								"id": "kzy99nlq-QOP-kzy926s7",
+								"response": { "name": "S2B41" },
+								"bindingDependencies": ["S2B41"]
+							},
+
+							{
+								"componentType": "Input",
+								"maxLength": 249,
+								"id": "kzy99nlq-QOP-kzy90sie",
+								"response": { "name": "S2B42" },
+								"bindingDependencies": ["S2B42"]
+							}
+						],
+
+						[
+							{ "value": "5", "label": { "value": "E", "type": "VTL|MD" } },
+
+							{
+								"componentType": "Input",
+								"maxLength": 249,
+								"id": "kzy99nlq-QOP-kzy93bnj",
+								"response": { "name": "S2B51" },
+								"bindingDependencies": ["S2B51"]
+							},
+
+							{
+								"componentType": "Input",
+								"maxLength": 249,
+								"id": "kzy99nlq-QOP-kzy8zxqc",
+								"response": { "name": "S2B52" },
+								"bindingDependencies": ["S2B52"]
+							}
+						]
+					]
+				}
+			]
+		},
+
+		{
+			"id": "kz59yxuw",
+			"componentType": "Sequence",
+			"page": "13",
+			"label": { "value": "S3 Tableau dans une boucle", "type": "VTL|MD" },
+			"conditionFilter": { "value": "true", "type": "VTL" },
+			"hierarchy": {
+				"sequence": {
+					"id": "kz59yxuw",
+					"page": "13",
+					"label": { "value": "S3 Tableau dans une boucle", "type": "VTL|MD" }
+				}
+			}
+		},
+
+		{
+			"id": "l5qrs4yb",
+			"componentType": "Loop",
+			"page": "14",
+			"depth": 1,
+			"paginatedLoop": false,
+			"conditionFilter": { "value": "true", "type": "VTL" },
+			"hierarchy": {
+				"sequence": {
+					"id": "kz59yxuw",
+					"page": "13",
+					"label": { "value": "S3 Tableau dans une boucle", "type": "VTL|MD" }
+				}
+			},
+			"bindingDependencies": ["PRODUIT"],
+			"lines": {
+				"min": { "value": "1", "type": "VTL" },
+				"max": { "value": "5", "type": "VTL" }
+			},
+			"components": [
+				{
+					"id": "kzy83lj6",
+					"componentType": "Subsequence",
+					"page": "14",
+					"goToPage": "14",
+					"label": { "value": "S3 Boucle", "type": "VTL|MD" },
+					"declarations": [
+						{
+							"id": "kzy83lj6-kzy8fh4v",
+							"declarationType": "HELP",
+							"position": "AFTER_QUESTION_TEXT",
+							"label": {
+								"value": "Sous séquence pour initier tableau dans boucle",
+								"type": "VTL|MD"
+							}
+						}
+					],
+					"conditionFilter": { "value": "true", "type": "VTL" },
+					"hierarchy": {
+						"sequence": {
+							"id": "kz59yxuw",
+							"page": "13",
+							"label": {
+								"value": "S3 Tableau dans une boucle",
+								"type": "VTL|MD"
+							}
+						},
+						"subSequence": {
+							"id": "kzy83lj6",
+							"page": "14",
+							"label": { "value": "S3 Boucle", "type": "VTL|MD" }
+						}
+					}
+				},
+
+				{
+					"id": "kz5a1mz4",
+					"componentType": "Input",
+					"mandatory": false,
+					"page": "14",
+					"maxLength": 249,
+					"label": {
+						"value": "\"➡ 1. \" || \"Quel est le nom du produit ? de 1 à 5\"",
+						"type": "VTL|MD"
+					},
+					"conditionFilter": { "value": "true", "type": "VTL" },
+					"hierarchy": {
+						"sequence": {
+							"id": "kz59yxuw",
+							"page": "13",
+							"label": {
+								"value": "S3 Tableau dans une boucle",
+								"type": "VTL|MD"
+							}
+						},
+						"subSequence": {
+							"id": "kzy83lj6",
+							"page": "14",
+							"label": { "value": "S3 Boucle", "type": "VTL|MD" }
+						}
+					},
+					"bindingDependencies": ["PRODUIT"],
+					"response": { "name": "PRODUIT" }
+				}
+			]
+		},
+
+		{
+			"id": "l5qrlpsl",
+			"componentType": "Loop",
+			"page": "15",
+			"maxPage": "2",
+			"depth": 1,
+			"paginatedLoop": true,
+			"conditionFilter": { "value": "true", "type": "VTL" },
+			"hierarchy": {
+				"sequence": {
+					"id": "kz59yxuw",
+					"page": "13",
+					"label": { "value": "S3 Tableau dans une boucle", "type": "VTL|MD" }
+				}
+			},
+			"bindingDependencies": [
+				"PRODUIT",
+				"S3A",
+				"S3B11",
+				"S3B12",
+				"S3B21",
+				"S3B22",
+				"S3B31",
+				"S3B32",
+				"S3B41",
+				"S3B42",
+				"S3B51",
+				"S3B52"
+			],
+			"loopDependencies": ["PRODUIT"],
+			"components": [
+				{
+					"id": "kzy8g7d6",
+					"componentType": "Subsequence",
+					"goToPage": "15.1",
+					"label": { "value": "S3 Bouclie liée", "type": "VTL|MD" },
+					"conditionFilter": { "value": "true", "type": "VTL" },
+					"hierarchy": {
+						"sequence": {
+							"id": "kz59yxuw",
+							"page": "13",
+							"label": {
+								"value": "S3 Tableau dans une boucle",
+								"type": "VTL|MD"
+							}
+						},
+						"subSequence": {
+							"id": "kzy8g7d6",
+							"page": "15.1",
+							"label": { "value": "S3 Bouclie liée", "type": "VTL|MD" }
+						}
+					},
+					"bindingDependencies": ["PRODUIT"]
+				},
+
+				{
+					"id": "l2etib35",
+					"componentType": "Input",
+					"mandatory": false,
+					"page": "15.1",
+					"maxLength": 249,
+					"label": {
+						"value": "\"➡ 2. \" || \"Quelle question pour \" || PRODUIT \" ?\"",
+						"type": "VTL|MD"
+					},
+					"conditionFilter": { "value": "true", "type": "VTL" },
+					"hierarchy": {
+						"sequence": {
+							"id": "kz59yxuw",
+							"page": "13",
+							"label": {
+								"value": "S3 Tableau dans une boucle",
+								"type": "VTL|MD"
+							}
+						},
+						"subSequence": {
+							"id": "kzy8g7d6",
+							"page": "15.1",
+							"label": { "value": "S3 Bouclie liée", "type": "VTL|MD" }
+						}
+					},
+					"bindingDependencies": ["PRODUIT", "S3A"],
+					"response": { "name": "S3A" }
+				},
+
+				{
+					"id": "kzy865lx",
+					"componentType": "Table",
+					"mandatory": false,
+					"page": "15.2",
+					"positioning": "HORIZONTAL",
+					"label": {
+						"value": "\"➡ 3. \" || \"Tableau dépendant du produit\" || PRODUIT || \"- ko\"",
+						"type": "VTL|MD"
+					},
+					"conditionFilter": { "value": "true", "type": "VTL" },
+					"hierarchy": {
+						"sequence": {
+							"id": "kz59yxuw",
+							"page": "13",
+							"label": {
+								"value": "S3 Tableau dans une boucle",
+								"type": "VTL|MD"
+							}
+						},
+						"subSequence": {
+							"id": "kzy8g7d6",
+							"page": "15.1",
+							"label": { "value": "S3 Bouclie liée", "type": "VTL|MD" }
+						}
+					},
+					"bindingDependencies": [
+						"PRODUIT",
+						"S3B11",
+						"S3B12",
+						"S3B21",
+						"S3B22",
+						"S3B31",
+						"S3B32",
+						"S3B41",
+						"S3B42",
+						"S3B51",
+						"S3B52"
+					],
+					"header": [
+						{ "label": { "value": "", "type": "VTL|MD" } },
+
+						{ "label": { "value": "INfo 1", "type": "VTL|MD" } },
+
+						{ "label": { "value": "Info 2", "type": "VTL|MD" } }
+					],
+					"body": [
+						[
+							{ "value": "1", "label": { "value": "A", "type": "VTL|MD" } },
+
+							{
+								"componentType": "Input",
+								"maxLength": 249,
+								"id": "kzy865lx-QOP-l2etdn45",
+								"response": { "name": "S3B11" },
+								"bindingDependencies": ["S3B11"]
+							},
+
+							{
+								"componentType": "Input",
+								"maxLength": 249,
+								"id": "kzy865lx-QOP-l2etlfid",
+								"response": { "name": "S3B12" },
+								"bindingDependencies": ["S3B12"]
+							}
+						],
+
+						[
+							{ "value": "2", "label": { "value": "B", "type": "VTL|MD" } },
+
+							{
+								"componentType": "Input",
+								"maxLength": 249,
+								"id": "kzy865lx-QOP-l2etb7h7",
+								"response": { "name": "S3B21" },
+								"bindingDependencies": ["S3B21"]
+							},
+
+							{
+								"componentType": "Input",
+								"maxLength": 249,
+								"id": "kzy865lx-QOP-l2etolyv",
+								"response": { "name": "S3B22" },
+								"bindingDependencies": ["S3B22"]
+							}
+						],
+
+						[
+							{ "value": "3", "label": { "value": "C", "type": "VTL|MD" } },
+
+							{
+								"componentType": "Input",
+								"maxLength": 249,
+								"id": "kzy865lx-QOP-l2etmnr1",
+								"response": { "name": "S3B31" },
+								"bindingDependencies": ["S3B31"]
+							},
+
+							{
+								"componentType": "Input",
+								"maxLength": 249,
+								"id": "kzy865lx-QOP-l2et6zmt",
+								"response": { "name": "S3B32" },
+								"bindingDependencies": ["S3B32"]
+							}
+						],
+
+						[
+							{ "value": "4", "label": { "value": "D", "type": "VTL|MD" } },
+
+							{
+								"componentType": "Input",
+								"maxLength": 249,
+								"id": "kzy865lx-QOP-l2etk1ja",
+								"response": { "name": "S3B41" },
+								"bindingDependencies": ["S3B41"]
+							},
+
+							{
+								"componentType": "Input",
+								"maxLength": 249,
+								"id": "kzy865lx-QOP-l2et9eye",
+								"response": { "name": "S3B42" },
+								"bindingDependencies": ["S3B42"]
+							}
+						],
+
+						[
+							{ "value": "5", "label": { "value": "E", "type": "VTL|MD" } },
+
+							{
+								"componentType": "Input",
+								"maxLength": 249,
+								"id": "kzy865lx-QOP-l2etkbe8",
+								"response": { "name": "S3B51" },
+								"bindingDependencies": ["S3B51"]
+							},
+
+							{
+								"componentType": "Input",
+								"maxLength": 249,
+								"id": "kzy865lx-QOP-l2et9m2h",
+								"response": { "name": "S3B52" },
+								"bindingDependencies": ["S3B52"]
+							}
+						]
+					]
+				}
+			],
+			"iterations": { "value": "count(PRODUIT)", "type": "VTL|MD" }
+		}
+	],
+	"variables": [
+		{
+			"variableType": "COLLECTED",
+			"name": "TABSIMPLE1_1_1",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABSIMPLE2_1_2",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABSIMPLE1_2_1",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABSIMPLE2_2_2",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABSIMPLE1_3_1",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABSIMPLE2_3_2",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABSIMPLE1_4_1",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABSIMPLE2_4_2",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABESA1_1_1",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABESA2_1_2",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABESA1_2_1",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABESA2_2_2",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABESA1_3_1",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABESA2_3_2",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABESA1_4_1",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABESA2_4_2",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABESA1_5_1",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABESA2_5_2",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABESA1_6_1",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABESA2_6_2",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABESA1_7_1",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABESA2_7_2",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABESA1_8_1",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABESA2_8_2",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABESA1_9_1",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABESA2_9_2",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABESA1_10_1",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABESA2_10_2",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS1_1_1",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS2_1_2",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS3_1_3",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS4_1_4",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS5_1_5",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS6_1_6",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS1_2_1",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS2_2_2",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS3_2_3",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS4_2_4",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS5_2_5",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS6_2_6",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS1_3_1",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS2_3_2",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS3_3_3",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS4_3_4",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS5_3_5",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS6_3_6",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS1_4_1",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS2_4_2",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS3_4_3",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS4_4_4",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS5_4_5",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS6_4_6",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS1_5_1",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS2_5_2",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS3_5_3",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS4_5_4",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS5_5_5",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS6_5_6",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS1_6_1",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS2_6_2",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS3_6_3",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS4_6_4",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS5_6_5",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS6_6_6",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS1_7_1",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS2_7_2",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS3_7_3",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS4_7_4",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS5_7_5",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS6_7_6",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS1_8_1",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS2_8_2",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS3_8_3",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS4_8_4",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS5_8_5",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS6_8_6",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS1_9_1",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS2_9_2",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS3_9_3",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS4_9_4",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS5_9_5",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS6_9_6",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS1_10_1",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS2_10_2",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS3_10_3",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS4_10_4",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS5_10_5",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS6_10_6",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABPRENOML_1_1",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOUINONL_1_2",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABNOMBREL_1_3",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABPRENOML_2_1",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOUINONL_2_2",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABNOMBREL_2_3",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABPRENOML_3_1",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOUINONL_3_2",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABNOMBREL_3_3",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "FILTTAB",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "QCMCCOCHER1",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "QCMCCOCHER2",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "QCMBRADIO1",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "QCMBRADIO2",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABCODE11",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABCODE12",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABCODE21",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABCODE22",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABCODE31",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABCODE32",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABCODE41",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABCODE42",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABCODE51",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABCODE52",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABSIMPLE1",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABSIMPLE2",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABESA1",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABESA2",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS1",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS2",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS3",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS4",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS5",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOFATS6",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABPRENOML",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABOUINONL",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "TABNOMBREL",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "S2A",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "S2B11",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "S2B12",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "S2B21",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "S2B22",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "S2B31",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "S2B32",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "S2B41",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "S2B42",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "S2B51",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "S2B52",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "PRODUIT",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "S3A",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "S3B11",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "S3B12",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "S3B21",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "S3B22",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "S3B31",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "S3B32",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "S3B41",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "S3B42",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "S3B51",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "S3B52",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+
+		{
+			"variableType": "CALCULATED",
+			"name": "FILTER_RESULT_FILTTAB",
+			"expression": { "value": "true", "type": "VTL" },
+			"inFilter": "false"
+		},
+
+		{
+			"variableType": "CALCULATED",
+			"name": "FILTER_RESULT_QCMCCOCHER",
+			"expression": { "value": "true", "type": "VTL" },
+			"inFilter": "false"
+		},
+
+		{
+			"variableType": "CALCULATED",
+			"name": "FILTER_RESULT_QCMBRADIO",
+			"expression": { "value": "true", "type": "VTL" },
+			"inFilter": "false"
+		},
+
+		{
+			"variableType": "CALCULATED",
+			"name": "FILTER_RESULT_TABCODE",
+			"expression": { "value": "true", "type": "VTL" },
+			"inFilter": "false"
+		},
+
+		{
+			"variableType": "CALCULATED",
+			"name": "FILTER_RESULT_TABSIMPLE",
+			"expression": { "value": "true", "type": "VTL" },
+			"inFilter": "false"
+		},
+
+		{
+			"variableType": "CALCULATED",
+			"name": "FILTER_RESULT_TABESA",
+			"expression": { "value": "true", "type": "VTL" },
+			"inFilter": "false"
+		},
+
+		{
+			"variableType": "CALCULATED",
+			"name": "FILTER_RESULT_TABOFATS",
+			"expression": { "value": "true", "type": "VTL" },
+			"inFilter": "false"
+		},
+
+		{
+			"variableType": "CALCULATED",
+			"name": "FILTER_RESULT_TABB",
+			"expression": { "value": "true", "type": "VTL" },
+			"shapeFrom": "TABPRENOML",
+			"inFilter": "false"
+		},
+
+		{
+			"variableType": "CALCULATED",
+			"name": "FILTER_RESULT_S2A",
+			"expression": { "value": "true", "type": "VTL" },
+			"shapeFrom": "S2A",
+			"inFilter": "false"
+		},
+
+		{
+			"variableType": "CALCULATED",
+			"name": "FILTER_RESULT_S2B",
+			"expression": { "value": "true", "type": "VTL" },
+			"shapeFrom": "S2A",
+			"inFilter": "false"
+		},
+
+		{
+			"variableType": "CALCULATED",
+			"name": "FILTER_RESULT_PRODUIT",
+			"expression": { "value": "true", "type": "VTL" },
+			"shapeFrom": "PRODUIT",
+			"inFilter": "false"
+		},
+
+		{
+			"variableType": "CALCULATED",
+			"name": "FILTER_RESULT_S3A",
+			"expression": { "value": "true", "type": "VTL" },
+			"shapeFrom": "S3A",
+			"inFilter": "false"
+		},
+
+		{
+			"variableType": "CALCULATED",
+			"name": "FILTER_RESULT_S3B",
+			"expression": { "value": "true", "type": "VTL" },
+			"shapeFrom": "S3A",
+			"inFilter": "false"
+		},
+
+		{
+			"variableType": "CALCULATED",
+			"name": "TOTAL",
+			"expression": {
+				"value": "cast(nvl(TABCODE12,\"0\"),integer)+ cast(nvl(TABCODE22,\"0\"),integer)+ cast(nvl(TABCODE32,\"0\"),integer)+ cast(nvl(TABCODE42,\"0\"),integer)+ cast(nvl(TABCODE52,\"0\"),integer)",
+				"type": "VTL"
+			},
+			"bindingDependencies": [
+				"TABCODE12",
+				"TABCODE22",
+				"TABCODE32",
+				"TABCODE42",
+				"TABCODE52"
+			],
+			"inFilter": "false"
+		}
+	],
+	"cleaning": {},
+	"resizing": {
+		"PRODUIT": {
+			"size": "count(PRODUIT)",
+			"variables": [
+				"S3A",
+				"S3B11",
+				"S3B12",
+				"S3B21",
+				"S3B22",
+				"S3B31",
+				"S3B32",
+				"S3B41",
+				"S3B42",
+				"S3B51",
+				"S3B52"
+			]
+		}
+	}
+}

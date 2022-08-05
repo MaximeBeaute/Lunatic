@@ -4,6 +4,7 @@ import testDylan from './test-dylan';
 import minMaxLoops from './V2_MinMaxSum_Boucles';
 import simpleLoops from './V2_QuestSimple_Boucles';
 import rallyGames from './V2_TCMRallyeGames';
+import tableau from './V2_TousTableaux.json';
 import declarationsSimples from './V2_DeclarationsSimples';
 import defaultArgTypes from '../utils/default-arg-types';
 
@@ -71,4 +72,12 @@ RallyeGames.args = {
 	id: 'rally-games',
 	pagination: true,
 	source: rallyGames,
+};
+
+export const Tableau = Template.bind({});
+
+Tableau.args = {
+	id: 'tableau',
+	pagination: true,
+	source: tableau,
 };

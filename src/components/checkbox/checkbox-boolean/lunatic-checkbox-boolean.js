@@ -9,6 +9,7 @@ function LunaticCheckboxBoolean({
 	disabled,
 	onChange,
 	custom,
+	positioning,
 }) {
 	return (
 		<CheckboxBoolean
@@ -18,6 +19,7 @@ function LunaticCheckboxBoolean({
 			onClick={onChange}
 			disabled={disabled}
 			custom={custom}
+			positioning={positioning}
 		/>
 	);
 }

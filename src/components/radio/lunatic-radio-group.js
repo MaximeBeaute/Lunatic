@@ -4,7 +4,8 @@ import { createLunaticComponent } from '../commons';
 import './radio.scss';
 
 function LunaticRadioGroup(props) {
-	const { id, options, value, onChange, checkboxStyle, custom } = props;
+	const { id, options, value, onChange, checkboxStyle, custom, positioning } =
+		props;
 	return (
 		<RadioGroup
 			id={id}
@@ -13,6 +14,7 @@ function LunaticRadioGroup(props) {
 			onClick={onChange}
 			checkboxStyle={checkboxStyle}
 			custom={custom}
+			positioning={positioning}
 		/>
 	);
 }

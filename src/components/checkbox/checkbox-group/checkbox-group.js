@@ -15,6 +15,7 @@ function CheckBoxOptionWrapper({
 	onKeyDown,
 	handleChange,
 	response,
+	positioning,
 }) {
 	const booleanValue = value || false;
 
@@ -39,6 +40,7 @@ function CheckBoxOptionWrapper({
 			onClick={onClickOption}
 			value={booleanValue}
 			onKeyDown={onKeyDown}
+			positioning={positioning}
 		/>
 	);
 }
